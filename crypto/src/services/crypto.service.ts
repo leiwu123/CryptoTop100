@@ -8,4 +8,8 @@ export class CryptoService {
   public getBitcoinmarketCap() {
     return this.http.get('https://api.coinmarketcap.com/v2/global/');
   }
+
+  public getAllCryptos() {
+    return this.http.get('https://api.coinmarketcap.com/v1/ticker/');
+  }
 }
