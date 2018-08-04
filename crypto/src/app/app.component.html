@@ -8,10 +8,9 @@
     <span class="btcBlue font-weight-bold" [innerHTML]="bitcoinMarketCap.total_volume_24h | currency"></span> | BTC Dominance:
     <span class="btcBlue font-weight-bold" [innerHTML]="bitcoinMarketCap.bitcoin_percentage_of_market_cap * 0.01 | percent: '1.1-2'"></span>
   </h4>
-  
+  <hr class="bg-white">
+  <!-- <crypto-table></crypto-table> -->
+  <router-outlet></router-outlet>
   
 </div>
 
-<div class="container">
-  <crypto-table></crypto-table>
-</div>
