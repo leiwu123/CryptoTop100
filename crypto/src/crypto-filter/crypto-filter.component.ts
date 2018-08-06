@@ -1,4 +1,4 @@
-import { Component, Input } from "../../node_modules/@angular/core";
+import { Component, Input, Output, EventEmitter } from "../../node_modules/@angular/core";
 import { CryptoCurrency } from '../models/crypto-currency.class';
 
 @Component({
@@ -9,9 +9,13 @@ import { CryptoCurrency } from '../models/crypto-currency.class';
 
 export class CryptoFilterComponent {
   @Input() public cryptos: CryptoCurrency[];
+  @Output() public filteredCryptosEvent = new EventEmitter<CryptoCurrency[]>();
+  @Output() public priceUnitEvent = new EventEmitter<string>();
   public filteredCryptos: CryptoCurrency[];
+  
   public percentChange: string = 'All';
   public showAmount: number = 100;
+  public priceUnit: string = 'USD';
 
   // constructor() {
    
@@ -25,6 +29,14 @@ export class CryptoFilterComponent {
   public filterCryptos(): void {
     this.percentChangeFilter();
     this.showOnlyFilter();
+  }
+
+  public filterEvent(): void {
+    this.filteredCryptosEvent.emit(this.filteredCryptos);
+  }
+
+  public priceEvent(): void {
+    this.priceUnitEvent.emit(this.priceUnit);
   }
 
   public percentChangeFilter(): void {
@@ -43,6 +55,8 @@ export class CryptoFilterComponent {
 
   public showOnlyFilter(): void {
     this.filteredCryptos = this.filteredCryptos.slice(0, this.showAmount);
-    console.log(this.filteredCryptos);
+    this.filterEvent();
+    this.priceEvent();
+    // console.log(this.filteredCryptos);
   }
 }
