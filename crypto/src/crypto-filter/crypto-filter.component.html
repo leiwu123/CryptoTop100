@@ -7,7 +7,7 @@
     <div class="row">
       <div class="col-md-4">
         <label for="growth" class="font-weight-bold">Show Growth</label>
-        <select id="growth" class="form-control" [(ngModel)]="percentChange" (ngModelChange)="percentChangeFilter()">
+        <select id="growth" class="form-control" [(ngModel)]="percentChange" (ngModelChange)="filterCryptos()">
           <option value="All">All</option>
           <option value="Positive">Positive</option>
           <option value="Negative">Negative</option>
@@ -15,7 +15,7 @@
       </div>
       <div class="col-md-4">
         <label for="growth" class="font-weight-bold">Show Only</label>
-        <select id="limit" class="form-control">
+        <select id="limit" class="form-control" [(ngModel)]="showAmount" (ngModelChange)="filterCryptos()">
           <option value="10">10</option>
           <option value="25">25</option>
           <option value="50">50</option>
