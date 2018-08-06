@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { CryptoService } from '../services/crypto.service';
 import { CryptoTableComponent } from '../crypto-table/crypto-table.component';
 import { NotFoundComponent } from '../not-found/not-found.component';
+import { CryptoFilterComponent } from '../crypto-filter/crypto-filter.component';
 import { BitcoinStatsComponent } from '../bitcoin-stats/bitcoin-stats.component';
 
 const appRoutes: Routes = [
@@ -22,7 +23,8 @@ const appRoutes: Routes = [
     AppComponent,
     CryptoTableComponent,
     NotFoundComponent,
-    BitcoinStatsComponent
+    BitcoinStatsComponent,
+    CryptoFilterComponent
   ],
   imports: [
     BrowserModule,
