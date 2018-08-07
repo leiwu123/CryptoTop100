@@ -1,4 +1,4 @@
-{{cryptos}}
+<!-- {{cryptos}} -->
 <div class="card text-white bg-dark mb-3 borderWhiteAll">
   <div class="card-header">
     <h3>Filters</h3>
@@ -24,7 +24,7 @@
       </div>
       <div class="col-md-4">
         <label for="priceunit" class="font-weight-bold">Price Unit</label>
-        <select id="priceunit" class="form-control">
+        <select id="priceunit" class="form-control" [(ngModel)]="priceUnit" (ngModelChange)="filterCryptos()">
           <option value="USD">USD</option>
           <option value="BTC">BTC</option>
         </select>
