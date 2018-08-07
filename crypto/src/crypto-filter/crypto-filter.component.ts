@@ -11,7 +11,7 @@ export class CryptoFilterComponent {
   @Input() public cryptos: CryptoCurrency[];
   @Output() public filteredCryptosEvent = new EventEmitter<CryptoCurrency[]>();
   @Output() public priceUnitEvent = new EventEmitter<string>();
-  public filteredCryptos: CryptoCurrency[];
+  public filteredCryptos: CryptoCurrency[] = [];
   
   public percentChange: string = 'All';
   public showAmount: number = 100;
