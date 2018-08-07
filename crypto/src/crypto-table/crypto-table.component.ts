@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CryptoService } from '../services/crypto.service';
-import { CryptoCurrency } from '../models/crypto-currency.class'
+import { CryptoCurrency } from '../models'
 
 @Component({
   selector: 'crypto-table',

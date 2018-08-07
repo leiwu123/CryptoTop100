@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CryptoService } from '../services/crypto.service';
-import { BitcoinPrice } from '../models/bitcoin-price.class';
-import { PriceCoordinates } from '../models/price-coordinates.interface';
+import { BitcoinPrice, PriceCoordinates } from '../models';
+
 
 @Component({
   selector: 'bitcoin-stats',
@@ -39,11 +39,23 @@ export class BitcoinStatsComponent {
         ]
       };
       this.options = {
-          legend: {
-            labels: {
-              fontColor: 'white'
+        legend: {
+          labels: {
+            fontColor: 'white'
+          }
+        },
+        scales: {
+          xAxes: [{
+            gridLines: {
+              color: "rgba(255, 255, 255, 0.3"
             }
-          },
+          }],
+          yAxes: [{
+            gridLines: {
+              color: "rgba(255, 255, 255, 0.3"
+            }
+          }],
+        },
         responsive: true,
         maintainAspectRatio: false
       };
