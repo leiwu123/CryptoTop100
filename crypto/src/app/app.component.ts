@@ -15,10 +15,11 @@ export class AppComponent {
   }
 
   getBitcoinStats(): void {
-    this.cryptoService.getBitcoinmarketCap().subscribe((stats: any) => {
-      console.log(stats);
-      this.bitcoinMarketCap = new BitcoinMarket(stats);
-      console.log(this.bitcoinMarketCap)
+    this.cryptoService.getBitcoinmarketCap().subscribe((stats: BitcoinMarket) => {
+      // console.log(stats);
+      // this.bitcoinMarketCap = new BitcoinMarket(stats);
+      this.bitcoinMarketCap = stats;
+      // console.log(this.bitcoinMarketCap)
     });
   }
 }

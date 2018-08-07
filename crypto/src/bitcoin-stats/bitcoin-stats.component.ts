@@ -19,9 +19,9 @@ export class BitcoinStatsComponent {
 
 
   constructor(public cryptoService: CryptoService) {
-    this.cryptoService.getBitcoinPriceStats().subscribe((data: any) => {
+    this.cryptoService.getBitcoinPriceStats().subscribe((data: BitcoinPrice) => {
       // console.log(data);
-      this.bitcoinStats = new BitcoinPrice(data);
+      this.bitcoinStats = data;
       this.prices = this.convertPrices();
       this.dates = this.convertDates();
       // console.log(this.prices)
