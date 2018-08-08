@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from "../../node_modules/@angular/core";
-import { CryptoCurrency } from '../models/crypto-currency.class';
+import { CryptoCurrency } from '../models';
 
 @Component({
   selector: 'crypto-filter',
@@ -11,7 +11,7 @@ export class CryptoFilterComponent {
   @Input() public cryptos: CryptoCurrency[];
   @Output() public filteredCryptosEvent = new EventEmitter<CryptoCurrency[]>();
   @Output() public priceUnitEvent = new EventEmitter<string>();
-  public filteredCryptos: CryptoCurrency[];
+  public filteredCryptos: CryptoCurrency[] = [];
   
   public percentChange: string = 'All';
   public showAmount: number = 100;
