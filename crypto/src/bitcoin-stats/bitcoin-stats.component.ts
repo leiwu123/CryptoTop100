@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CryptoService } from '../services/crypto.service';
 import { BitcoinPrice, PriceCoordinates } from '../models';
 
@@ -9,8 +9,9 @@ import { BitcoinPrice, PriceCoordinates } from '../models';
   styleUrls: ['./bitcoin-stats.component.css']
 })
 
-export class BitcoinStatsComponent implements OnInit {
+export class BitcoinStatsComponent implements OnInit, OnDestroy {
   public bitcoinStats: BitcoinPrice = new BitcoinPrice();
+  public bitcoinPriceStatsSub: any;
   public prices: number[];
   public dates: string[];
   public options: any;
@@ -18,12 +19,10 @@ export class BitcoinStatsComponent implements OnInit {
   public chartData: any;
 
 
-  constructor(public cryptoService: CryptoService) {
-    
-  }
+  constructor(public cryptoService: CryptoService) {}
 
   public ngOnInit(): void {
-    this.cryptoService.getBitcoinPriceStats().subscribe((data: BitcoinPrice) => {
+    this.bitcoinPriceStatsSub = this.cryptoService.getBitcoinPriceStats().subscribe((data: BitcoinPrice) => {
       // console.log(data);
       this.bitcoinStats = data;
       this.prices = this.convertPrices();
@@ -64,6 +63,10 @@ export class BitcoinStatsComponent implements OnInit {
         maintainAspectRatio: false
       };
     })
+  }
+
+  public ngOnDestroy(): void {
+    this.bitcoinPriceStatsSub.unsubscribe();
   }
 
   public convertDates(): string[] {

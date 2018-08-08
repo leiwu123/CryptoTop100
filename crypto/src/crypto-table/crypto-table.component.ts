@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CryptoService } from '../services/crypto.service';
 import { CryptoCurrency } from '../models';
 import { sortValues } from '../models/datasets';
@@ -9,16 +9,21 @@ import { sortValues } from '../models/datasets';
   styleUrls: ['./crypto-table.component.css'],
 })
 
-export class CryptoTableComponent implements OnInit {
+export class CryptoTableComponent implements OnInit, OnDestroy {
   public top100Cryptos: CryptoCurrency[];
   public filteredCryptos: CryptoCurrency[];
   public sortValues: any = sortValues;
   public priceUnit: string = 'USD';
+  public top100CryptosSub: any;
 
   constructor(public cryptoService: CryptoService) {}
 
   public ngOnInit(): void {
     this.getTop100Cryptos();
+  }
+
+  public ngOnDestroy(): void {
+    this.top100CryptosSub.unsubscribe();
   }
 
   public getTop100Cryptos(): void {
@@ -29,7 +34,7 @@ export class CryptoTableComponent implements OnInit {
     //   // console.log(this.top100Cryptos);
     //   this.filteredCryptos = this.top100Cryptos;
     // });
-    this.cryptoService.getAllCryptos().subscribe((data: CryptoCurrency[]) => {
+    this.top100CryptosSub = this.cryptoService.getAllCryptos().subscribe((data: CryptoCurrency[]) => {
       this.top100Cryptos = data;
       // console.log(this.top100Cryptos);
       this.filteredCryptos = this.top100Cryptos;

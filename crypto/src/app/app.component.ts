@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CryptoService } from '../services/crypto.service';
 import { BitcoinMarket } from '../models'
 
@@ -7,17 +7,21 @@ import { BitcoinMarket } from '../models'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   bitcoinMarketCap: BitcoinMarket = new BitcoinMarket();
-
+  public bitcoinStatsSub: any;
   constructor(public cryptoService: CryptoService) {}
 
   public ngOnInit(): void {
     this.getBitcoinStats();
   }
 
+  public ngOnDestroy(): void {
+    this.bitcoinStatsSub.unsubscribe();
+  }
+
   getBitcoinStats(): void {
-    this.cryptoService.getBitcoinmarketCap().subscribe((stats: BitcoinMarket) => {
+    this.bitcoinStatsSub = this.cryptoService.getBitcoinmarketCap().subscribe((stats: BitcoinMarket) => {
       // console.log(stats);
       // this.bitcoinMarketCap = new BitcoinMarket(stats);
       this.bitcoinMarketCap = stats;
