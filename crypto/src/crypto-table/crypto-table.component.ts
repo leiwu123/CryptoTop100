@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CryptoService } from '../services/crypto.service';
 import { CryptoCurrency } from '../models';
 import { sortValues } from '../models/datasets';
@@ -9,13 +9,15 @@ import { sortValues } from '../models/datasets';
   styleUrls: ['./crypto-table.component.css'],
 })
 
-export class CryptoTableComponent {
+export class CryptoTableComponent implements OnInit {
   public top100Cryptos: CryptoCurrency[];
   public filteredCryptos: CryptoCurrency[];
   public sortValues: any = sortValues;
   public priceUnit: string = 'USD';
 
-  constructor(public cryptoService: CryptoService) {
+  constructor(public cryptoService: CryptoService) {}
+
+  public ngOnInit(): void {
     this.getTop100Cryptos();
   }
 

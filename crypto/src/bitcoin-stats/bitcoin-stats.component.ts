@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CryptoService } from '../services/crypto.service';
 import { BitcoinPrice, PriceCoordinates } from '../models';
 
@@ -9,7 +9,7 @@ import { BitcoinPrice, PriceCoordinates } from '../models';
   styleUrls: ['./bitcoin-stats.component.css']
 })
 
-export class BitcoinStatsComponent {
+export class BitcoinStatsComponent implements OnInit {
   public bitcoinStats: BitcoinPrice = new BitcoinPrice();
   public prices: number[];
   public dates: string[];
@@ -19,6 +19,10 @@ export class BitcoinStatsComponent {
 
 
   constructor(public cryptoService: CryptoService) {
+    
+  }
+
+  public ngOnInit(): void {
     this.cryptoService.getBitcoinPriceStats().subscribe((data: BitcoinPrice) => {
       // console.log(data);
       this.bitcoinStats = data;

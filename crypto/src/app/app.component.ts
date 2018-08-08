@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CryptoService } from '../services/crypto.service';
 import { BitcoinMarket } from '../models'
 
@@ -7,10 +7,12 @@ import { BitcoinMarket } from '../models'
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   bitcoinMarketCap: BitcoinMarket = new BitcoinMarket();
 
-  constructor(public cryptoService: CryptoService) {
+  constructor(public cryptoService: CryptoService) {}
+
+  public ngOnInit(): void {
     this.getBitcoinStats();
   }
 
