@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription } from '../../node_modules/rxjs';
 import { CryptoService } from '../services/crypto.service';
 import { BitcoinMarket } from '../models'
 
@@ -9,7 +10,8 @@ import { BitcoinMarket } from '../models'
 })
 export class AppComponent implements OnInit, OnDestroy {
   bitcoinMarketCap: BitcoinMarket = new BitcoinMarket();
-  public bitcoinStatsSub: any;
+  public bitcoinStatsSub: Subscription;
+
   constructor(public cryptoService: CryptoService) {}
 
   public ngOnInit(): void {

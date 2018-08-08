@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CryptoService } from '../services/crypto.service';
 import { BitcoinPrice, PriceCoordinates } from '../models';
+import { Subscription } from '../../node_modules/rxjs';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { BitcoinPrice, PriceCoordinates } from '../models';
 
 export class BitcoinStatsComponent implements OnInit, OnDestroy {
   public bitcoinStats: BitcoinPrice = new BitcoinPrice();
-  public bitcoinPriceStatsSub: any;
+  public bitcoinPriceStatsSub: Subscription;
   public prices: number[];
   public dates: string[];
   public options: any;

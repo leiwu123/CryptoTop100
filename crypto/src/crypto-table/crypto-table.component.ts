@@ -1,7 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CryptoService } from '../services/crypto.service';
-import { CryptoCurrency } from '../models';
+import { CryptoCurrency, SortValues } from '../models';
 import { sortValues } from '../models/datasets';
+import { Subscription } from '../../node_modules/rxjs';
 
 @Component({
   selector: 'crypto-table',
@@ -12,9 +13,9 @@ import { sortValues } from '../models/datasets';
 export class CryptoTableComponent implements OnInit, OnDestroy {
   public top100Cryptos: CryptoCurrency[];
   public filteredCryptos: CryptoCurrency[];
-  public sortValues: any = sortValues;
+  public sortValues: SortValues = sortValues;
   public priceUnit: string = 'USD';
-  public top100CryptosSub: any;
+  public top100CryptosSub: Subscription;
 
   constructor(public cryptoService: CryptoService) {}
 
@@ -47,7 +48,6 @@ export class CryptoTableComponent implements OnInit, OnDestroy {
 
   public listenPriceUnit(e: string) {
     this.priceUnit = e;
-    console.log(this.priceUnit);
   }
 
   public sortString(sortValue: boolean): void {
@@ -80,7 +80,7 @@ export class CryptoTableComponent implements OnInit, OnDestroy {
     }
   }
 
-  public sortNumeric(sortValue: boolean, key: string) {
+  public sortNumeric(sortValue: boolean, key: string): void {
     if (sortValue) {
       this.top100Cryptos = this.top100Cryptos.sort((a: CryptoCurrency, b: CryptoCurrency) => {
         return a[key] - b[key];

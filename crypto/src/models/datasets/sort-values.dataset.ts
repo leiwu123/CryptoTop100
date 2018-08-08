@@ -1,4 +1,6 @@
-export const sortValues = { 
+import { SortValues } from '../';
+
+export const sortValues: SortValues = { 
   rank: false, 
   marketCap: true, 
   volume: false, 
